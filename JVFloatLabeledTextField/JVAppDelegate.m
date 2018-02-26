@@ -26,11 +26,14 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #define TEST_XIB_CONFIGURATION 0
+#define TEST_XIB_TABLE_CONFIGURATION 1
 
 #import "JVAppDelegate.h"
 
 #if TEST_XIB_CONFIGURATION
 #import "JVFloatLabeledTextFieldXIBViewController.h"
+#elif TEST_XIB_TABLE_CONFIGURATION
+#import "JVFloatLabeledTextFieldTableViewController.h"
 #else
 #import "JVFloatLabeledTextFieldViewController.h"
 #endif
@@ -45,6 +48,9 @@
     
 #if TEST_XIB_CONFIGURATION
     JVFloatLabeledTextFieldXIBViewController *viewController = [JVFloatLabeledTextFieldXIBViewController new];
+#elif TEST_XIB_TABLE_CONFIGURATION
+    NSArray* items = [[NSBundle mainBundle] loadNibNamed:@"JVFloatLabeledTextFieldTableViewController" owner:nil options:nil];
+    JVFloatLabeledTextFieldTableViewController *viewController = items.firstObject;
 #else
     JVFloatLabeledTextFieldViewController *viewController = [JVFloatLabeledTextFieldViewController new];
 #endif

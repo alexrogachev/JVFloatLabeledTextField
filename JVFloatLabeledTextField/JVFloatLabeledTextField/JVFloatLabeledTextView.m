@@ -79,13 +79,17 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     _placeholderLabel.backgroundColor = [UIColor clearColor];
     _placeholderTextColor = [JVFloatLabeledTextView defaultiOSPlaceholderColor];
     _placeholderLabel.textColor = _placeholderTextColor;
+    _placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self insertSubview:_placeholderLabel atIndex:0];
     
     _floatingLabel = [UILabel new];
     _floatingLabel.alpha = 0.0f;
     _floatingLabel.backgroundColor = self.backgroundColor;
+    _floatingLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _floatingLabel.numberOfLines = 0;
+    _floatingLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self addSubview:_floatingLabel];
-	
+    
     // some basic default fonts/colors
     _floatingLabelFont = [self defaultFloatingLabelFont];
     _floatingLabel.font = _floatingLabelFont;
@@ -169,23 +173,31 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     [self adjustTextContainerInsetTop];
     
     CGSize floatingLabelSize = [_floatingLabel sizeThatFits:_floatingLabel.superview.bounds.size];
-    
+
     _floatingLabel.frame = CGRectMake(_floatingLabel.frame.origin.x,
                                       _floatingLabel.frame.origin.y,
                                       self.frame.size.width,
                                       floatingLabelSize.height);
-    
+
+
     CGSize placeholderLabelSize = [_placeholderLabel sizeThatFits:_placeholderLabel.superview.bounds.size];
-    
-    CGRect textRect = [self textRect];
-    
+
     _placeholderLabel.alpha = [self.text length] > 0 ? 0.0f : 1.0f;
-    _placeholderLabel.frame = CGRectMake(textRect.origin.x, textRect.origin.y,
+    CGFloat offset = (_placeholderLabel.superview.bounds.size.height - _placeholderLabel.frame.size.height) / 2.0;
+    
+    _placeholderLabel.frame = CGRectMake(0, _placeholderLabel.superview.bounds.origin.y + offset,
                                          placeholderLabelSize.width, placeholderLabelSize.height);
-    
+
     [self setLabelOriginForTextAlignment];
-    
+
     BOOL firstResponder = self.isFirstResponder;
+
+    if (firstResponder || (self.text && self.text.length > 0)) {
+        _placeholderLabel.alpha = 0.0;
+    } else {
+        _placeholderLabel.alpha = 1.0;
+    }
+    
     _floatingLabel.textColor = (firstResponder && self.text && self.text.length > 0 ?
                                 self.labelActiveColor : self.floatingLabelTextColor);
     if ((!self.text || 0 == [self.text length]) && !self.alwaysShowFloatingLabel) {
@@ -200,20 +212,36 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     if (!self.scrollEnabled && !CGSizeEqualToSize(self.bounds.size, [self intrinsicContentSize])) {
         [self invalidateIntrinsicContentSize];
     }
+    
+    self.floatingLabel.preferredMaxLayoutWidth = self.bounds.size.width;
+    self.placeholderLabel.preferredMaxLayoutWidth = self.bounds.size.width;
+    
+    [super layoutSubviews];
+}
+
+- (BOOL)resignFirstResponder {
+    [self setNeedsLayout];
+    return [super resignFirstResponder];
+}
+
+- (BOOL)becomeFirstResponder {
+    [self setNeedsLayout];
+    return [super becomeFirstResponder];
 }
 
 - (CGSize)intrinsicContentSize
 {
     CGSize textFieldIntrinsicContentSize = [super intrinsicContentSize];
 
-    if (self.text != nil && self.text.length > 0) {
-        return textFieldIntrinsicContentSize;
-    } else {
-        CGFloat additionalHeight = _placeholderLabel.bounds.size.height - (_floatingLabel.bounds.size.height + _floatingLabelYPadding);
-
-        return CGSizeMake(textFieldIntrinsicContentSize.width,
-                          textFieldIntrinsicContentSize.height + additionalHeight);
+    CGSize floatingLabelSize = [_floatingLabel intrinsicContentSize];
+    if (textFieldIntrinsicContentSize.height == UIViewNoIntrinsicMetric) {
+        textFieldIntrinsicContentSize.height = self.font.lineHeight;
     }
+    textFieldIntrinsicContentSize.height += floatingLabelSize.height + 5;
+    
+    CGSize placeholderSize = [_placeholderLabel intrinsicContentSize];
+    
+    return CGSizeMake(UIViewNoIntrinsicMetric, MAX(textFieldIntrinsicContentSize.height, placeholderSize.height));
 }
 
 - (UIColor *)labelActiveColor
@@ -285,11 +313,13 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 
 - (void)adjustTextContainerInsetTop
 {
-    self.textContainerInset = UIEdgeInsetsMake(self.startingTextContainerInsetTop
-                                               + _floatingLabel.font.lineHeight + _placeholderYPadding,
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.startingTextContainerInsetTop
+                                               + _floatingLabel.frame.size.height + _placeholderYPadding + 5,
                                                self.textContainerInset.left,
                                                self.textContainerInset.bottom,
                                                self.textContainerInset.right);
+    self.textContainerInset = insets;
+    [self setNeedsDisplay];
 }
 
 - (void)setLabelOriginForTextAlignment

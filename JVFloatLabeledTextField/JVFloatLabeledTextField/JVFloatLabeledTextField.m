@@ -58,6 +58,9 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 {
     _floatingLabel = [UILabel new];
     _floatingLabel.alpha = 0.0f;
+    _floatingLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _floatingLabel.numberOfLines = 0;
+    _floatingLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self addSubview:_floatingLabel];
 	
     // some basic default fonts/colors

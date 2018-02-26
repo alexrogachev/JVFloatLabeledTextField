@@ -33,6 +33,10 @@
 		7FE3F0E41CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE3F0E21CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.m */; };
 		7FE3F0E51CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE3F0E31CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.xib */; };
 		7FF4DB94180B865F008527BD /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF4DB93180B865F008527BD /* JVFloatLabeledTextField.m */; };
+		CF84809A20447B110048E609 /* JVFloatLabeledTextFieldTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84809920447B110048E609 /* JVFloatLabeledTextFieldTableViewController.m */; };
+		CF84809E20447B520048E609 /* JVFloatLabeledTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84809C20447B520048E609 /* JVFloatLabeledTextViewCell.m */; };
+		CF84809F20447B520048E609 /* JVFloatLabeledTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF84809D20447B520048E609 /* JVFloatLabeledTextViewCell.xib */; };
+		CF8480A120447D1A0048E609 /* JVFloatLabeledTextFieldTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF8480A020447D1A0048E609 /* JVFloatLabeledTextFieldTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +98,12 @@
 		7FE3F0E31CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JVFloatLabeledTextFieldXIBViewController.xib; sourceTree = "<group>"; };
 		7FF4DB92180B865F008527BD /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
 		7FF4DB93180B865F008527BD /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
+		CF84809820447B110048E609 /* JVFloatLabeledTextFieldTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextFieldTableViewController.h; sourceTree = "<group>"; };
+		CF84809920447B110048E609 /* JVFloatLabeledTextFieldTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextFieldTableViewController.m; sourceTree = "<group>"; };
+		CF84809B20447B520048E609 /* JVFloatLabeledTextViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextViewCell.h; sourceTree = "<group>"; };
+		CF84809C20447B520048E609 /* JVFloatLabeledTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextViewCell.m; sourceTree = "<group>"; };
+		CF84809D20447B520048E609 /* JVFloatLabeledTextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JVFloatLabeledTextViewCell.xib; sourceTree = "<group>"; };
+		CF8480A020447D1A0048E609 /* JVFloatLabeledTextFieldTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JVFloatLabeledTextFieldTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +200,12 @@
 				7FE3F0E11CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.h */,
 				7FE3F0E21CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.m */,
 				7FE3F0E31CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.xib */,
+				CF84809820447B110048E609 /* JVFloatLabeledTextFieldTableViewController.h */,
+				CF84809920447B110048E609 /* JVFloatLabeledTextFieldTableViewController.m */,
+				CF8480A020447D1A0048E609 /* JVFloatLabeledTextFieldTableViewController.xib */,
+				CF84809B20447B520048E609 /* JVFloatLabeledTextViewCell.h */,
+				CF84809C20447B520048E609 /* JVFloatLabeledTextViewCell.m */,
+				CF84809D20447B520048E609 /* JVFloatLabeledTextViewCell.xib */,
 				7F50336017FA7B0A0026FB7F /* Supporting Files */,
 			);
 			path = JVFloatLabeledTextField;
@@ -361,8 +377,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9020251809A39B00B43AD5 /* Default@2x.png in Resources */,
+				CF84809F20447B520048E609 /* JVFloatLabeledTextViewCell.xib in Resources */,
 				7FE3F0E51CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.xib in Resources */,
 				7F9020231809A39B00B43AD5 /* Default-568h@2x.png in Resources */,
+				CF8480A120447D1A0048E609 /* JVFloatLabeledTextFieldTableViewController.xib in Resources */,
 				7F9020241809A39B00B43AD5 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,12 +411,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF84809E20447B520048E609 /* JVFloatLabeledTextViewCell.m in Sources */,
 				7FF4DB94180B865F008527BD /* JVFloatLabeledTextField.m in Sources */,
 				7F50338E17FA7B8C0026FB7F /* JVFloatLabeledTextFieldViewController.m in Sources */,
 				4306C37419531E7000CC0A4C /* NSString+TextDirectionality.m in Sources */,
 				7F50336A17FA7B0A0026FB7F /* JVAppDelegate.m in Sources */,
 				7F50336617FA7B0A0026FB7F /* main.m in Sources */,
 				7FE3F0E41CB0598B00202683 /* JVFloatLabeledTextFieldXIBViewController.m in Sources */,
+				CF84809A20447B110048E609 /* JVFloatLabeledTextFieldTableViewController.m in Sources */,
 				7F9AB497183B2EBF00694AB0 /* JVFloatLabeledTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +658,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JVFloatLabeledTextField/JVFloatLabeledTextField-Prefix.pch";
 				INFOPLIST_FILE = "JVFloatLabeledTextField/JVFloatLabeledTextField-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jaredverdi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = JVFloatLabeledTextField;
@@ -653,6 +674,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JVFloatLabeledTextField/JVFloatLabeledTextField-Prefix.pch";
 				INFOPLIST_FILE = "JVFloatLabeledTextField/JVFloatLabeledTextField-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jaredverdi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = JVFloatLabeledTextField;
